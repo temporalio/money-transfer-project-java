@@ -33,3 +33,13 @@ application {
     // Define the main class for the application.
     mainClassName = 'transfermoneyapp.TransferMoneyInitiator'
 }
+
+task initiateTransfer(type: JavaExec) {
+    main = 'transfermoneyapp.TransferMoneyInitiator'
+    classpath = sourceSets.main.runtimeClasspath
+}
+
+task startWorker(type: JavaExec) {
+    main = 'transfermoneyapp.TransferMoneyWorker'
+    classpath = sourceSets.main.runtimeClasspath
+}
