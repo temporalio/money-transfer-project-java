@@ -1,1 +1,1 @@
-# java-project-template
+# project-template-java
