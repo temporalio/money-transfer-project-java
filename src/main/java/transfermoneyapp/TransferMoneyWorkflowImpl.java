@@ -12,8 +12,8 @@ public class TransferMoneyWorkflowImpl implements TransferMoneyWorkflow {
             .setStartToCloseTimeout(Duration.ofSeconds(5))
             .build();
 
-    // An ActivityStub is a placeholder for the actual Activity code.
-    // The first parameter identifies which Activity code it is a placeholder for.
+    // An ActivityStub converts the parameters that are passed to it, so that the params can be passed to the server.
+    // The first param identifies the Activity code to be executed
     // The second parameter identifies any options that need to be applied to the code's execution.
     private final AccountActivity account = Workflow.newActivityStub(AccountActivity.class, options);
 

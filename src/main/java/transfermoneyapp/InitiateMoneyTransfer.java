@@ -18,6 +18,9 @@ public class InitiateMoneyTransfer {
                 .build();
         // WorkflowClient can be used to start, signal, query, cancel, and terminate Workflows.
         WorkflowClient client = WorkflowClient.newInstance(service);
+        // WorkflowFlowStub is a placeholder for the actual Workflow code.
+        // The first parameter identifies which Workflow code it is a placeholder for.
+        // The second parameter identifies any options that need to be applied to the code's execution.
         TransferMoneyWorkflow workflow = client.newWorkflowStub(TransferMoneyWorkflow.class, options);
 
         String referenceId = UUID.randomUUID().toString();

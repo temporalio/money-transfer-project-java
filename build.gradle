@@ -35,7 +35,7 @@ application {
 }
 
 task initiateTransfer(type: JavaExec) {
-    main = 'transfermoneyapp.TransferMoneyInitiator'
+    main = 'transfermoneyapp.InitiateMoneyTransfer'
     classpath = sourceSets.main.runtimeClasspath
 }
 
