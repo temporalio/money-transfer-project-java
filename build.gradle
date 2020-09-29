@@ -27,6 +27,7 @@ dependencies {
     implementation group: 'ch.qos.logback', name: 'logback-classic', version: '1.2.3'
     // Use JUnit test framework
     testImplementation 'junit:junit:4.13'
+    testImplementation group: 'org.mockito', name: 'mockito-all', version: '1.10.19'
 }
 
 application {

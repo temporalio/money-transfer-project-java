@@ -1,6 +1,6 @@
 package transfermoneyapp;
 
-// @@@SNIPSTART java-project-template-activity-interface
+// @@@SNIPSTART project-template-java-activity-interface
 import io.temporal.activity.ActivityInterface;
 
 @ActivityInterface

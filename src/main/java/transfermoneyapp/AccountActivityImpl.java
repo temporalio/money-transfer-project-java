@@ -1,5 +1,5 @@
 package transfermoneyapp;
-// @@@SNIPSTART java-project-template-activity-implementation
+// @@@SNIPSTART project-template-java-activity-implementation
 public class AccountActivityImpl implements AccountActivity {
 
     @Override

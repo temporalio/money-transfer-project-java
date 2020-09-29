@@ -5,7 +5,7 @@ import io.temporal.client.WorkflowOptions;
 import io.temporal.serviceclient.WorkflowServiceStubs;
 import java.util.UUID;
 
-// @@@SNIPSTART java-project-template-workflow-initiator
+// @@@SNIPSTART project-template-java-workflow-initiator
 public class InitiateMoneyTransfer {
 
     public static void main(String args[]) throws Exception {

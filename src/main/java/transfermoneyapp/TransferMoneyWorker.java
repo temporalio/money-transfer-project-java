@@ -5,7 +5,7 @@ import io.temporal.serviceclient.WorkflowServiceStubs;
 import io.temporal.worker.Worker;
 import io.temporal.worker.WorkerFactory;
 
-// @@@SNIPSTART java-project-template-worker
+// @@@SNIPSTART project-template-java-worker
 public class TransferMoneyWorker {
 
     public static void main(String args[]) {

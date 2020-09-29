@@ -2,14 +2,22 @@ package transfermoneyapp;
 
 import io.temporal.activity.ActivityOptions;
 import io.temporal.workflow.Workflow;
+import io.temporal.common.RetryOptions;
 import java.time.Duration;
 
-// @@@SNIPSTART java-project-template-workflow-implementation
+// @@@SNIPSTART project-template-java-workflow-implementation
 public class TransferMoneyWorkflowImpl implements TransferMoneyWorkflow {
 
-    private final ActivityOptions options =
-            ActivityOptions.newBuilder()
+    RetryOptions retryoptions =  RetryOptions.newBuilder()
+            .setInitialInterval(Duration.ofSeconds(1))
+            .setMaximumInterval(Duration.ofSeconds(100))
+            .setBackoffCoefficient(2)
+            .setMaximumAttempts(0)
+            .build();
+
+    private final ActivityOptions options = ActivityOptions.newBuilder()
             .setStartToCloseTimeout(Duration.ofSeconds(5))
+            .setRetryOptions(retryoptions)
             .build();
 
     // An ActivityStub converts the parameters that are passed to it so that the params can be passed to the server.
