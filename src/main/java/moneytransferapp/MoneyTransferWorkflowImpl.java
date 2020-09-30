@@ -2,7 +2,7 @@ package moneytransferapp;
 
 import io.temporal.activity.ActivityOptions;
 import io.temporal.workflow.Workflow;
-import io.temporal.common.RetryOptions;
+ import io.temporal.common.RetryOptions;
 import java.time.Duration;
 
 // @@@SNIPSTART money-transfer-project-template-java-workflow-implementation
@@ -12,7 +12,7 @@ public class MoneyTransferWorkflowImpl implements MoneyTransferWorkflow {
             .setInitialInterval(Duration.ofSeconds(1))
             .setMaximumInterval(Duration.ofSeconds(100))
             .setBackoffCoefficient(2)
-            .setMaximumAttempts(0)
+            .setMaximumAttempts(500)
             .build();
 
     private final ActivityOptions options = ActivityOptions.newBuilder()
