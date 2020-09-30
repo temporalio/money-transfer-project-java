@@ -1,12 +1,12 @@
-package transfermoneyapp;
+package moneytransferapp;
 
 import io.temporal.client.WorkflowClient;
 import io.temporal.serviceclient.WorkflowServiceStubs;
 import io.temporal.worker.Worker;
 import io.temporal.worker.WorkerFactory;
 
-// @@@SNIPSTART project-template-java-worker
-public class TransferMoneyWorker {
+// @@@SNIPSTART money-transfer-project-template-java-worker
+public class MoneyTransferWorker {
 
     public static void main(String args[]) {
         // WorkflowServiceStubs is a gRPC stubs wrapper
@@ -16,11 +16,11 @@ public class TransferMoneyWorker {
         // Worker factory is used to create Workers for specific Task Queues
         WorkerFactory factory = WorkerFactory.newInstance(client);
         // Create a Worker that listens to a Task Queue
-        Worker worker = factory.newWorker(Shared.TRANSFER_MONEY_TASK_QUEUE);
+        Worker worker = factory.newWorker(Shared.MONEY_TRANSFER_TASK_QUEUE);
         // This Worker hosts both Workflow and Activity implementations
         // Register the Workflow with the Worker
         // Workflows are stateful. So you need a type to create instances.
-        worker.registerWorkflowImplementationTypes(TransferMoneyWorkflowImpl.class);
+        worker.registerWorkflowImplementationTypes(MoneyTransferWorkflowImpl.class);
         // Register the Activity with the Worker
         // Activities are stateless and thread safe, so a shared instance is used.
         worker.registerActivitiesImplementations(new AccountActivityImpl());

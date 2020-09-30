@@ -1,12 +1,12 @@
-package transfermoneyapp;
+package moneytransferapp;
 
 import io.temporal.activity.ActivityOptions;
 import io.temporal.workflow.Workflow;
 import io.temporal.common.RetryOptions;
 import java.time.Duration;
 
-// @@@SNIPSTART project-template-java-workflow-implementation
-public class TransferMoneyWorkflowImpl implements TransferMoneyWorkflow {
+// @@@SNIPSTART money-transfer-project-template-java-workflow-implementation
+public class MoneyTransferWorkflowImpl implements MoneyTransferWorkflow {
 
     RetryOptions retryoptions =  RetryOptions.newBuilder()
             .setInitialInterval(Duration.ofSeconds(1))

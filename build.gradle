@@ -32,15 +32,15 @@ dependencies {
 
 application {
     // Define the main class for the application.
-    mainClassName = 'transfermoneyapp.TransferMoneyInitiator'
+    mainClassName = 'moneytransferapp.InitiateMoneyTransfer'
 }
 
 task initiateTransfer(type: JavaExec) {
-    main = 'transfermoneyapp.InitiateMoneyTransfer'
+    main = 'moneytransferapp.InitiateMoneyTransfer'
     classpath = sourceSets.main.runtimeClasspath
 }
 
 task startWorker(type: JavaExec) {
-    main = 'transfermoneyapp.TransferMoneyWorker'
+    main = 'moneytransferapp.MoneyTransferWorker'
     classpath = sourceSets.main.runtimeClasspath
 }

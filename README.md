@@ -1,4 +1,4 @@
-# Transfer money: Java project
+# Money transfer: Java project template
 
 This project can be used as a template to start building your own Temporal Workflow application.
 

@@ -1,11 +1,11 @@
-package transfermoneyapp;
+package moneytransferapp;
 
 import io.temporal.client.WorkflowClient;
 import io.temporal.client.WorkflowOptions;
 import io.temporal.serviceclient.WorkflowServiceStubs;
 import java.util.UUID;
 
-// @@@SNIPSTART project-template-java-workflow-initiator
+// @@@SNIPSTART money-transfer-project-template-java-workflow-initiator
 public class InitiateMoneyTransfer {
 
     public static void main(String args[]) throws Exception {
@@ -13,13 +13,13 @@ public class InitiateMoneyTransfer {
         // That talks to the local Docker instance of the Temporal server.
         WorkflowServiceStubs service = WorkflowServiceStubs.newInstance();
         WorkflowOptions options = WorkflowOptions.newBuilder()
-                .setTaskQueue(Shared.TRANSFER_MONEY_TASK_QUEUE)
+                .setTaskQueue(Shared.MONEY_TRANSFER_TASK_QUEUE)
                 .setWorkflowId("transfer-money-workflow-001")
                 .build();
         // WorkflowClient can be used to start, signal, query, cancel, and terminate Workflows.
         WorkflowClient client = WorkflowClient.newInstance(service);
         // WorkflowFlowStub converts the parameters that are passed to it so that they can be passed to the server.
-        TransferMoneyWorkflow workflow = client.newWorkflowStub(TransferMoneyWorkflow.class, options);
+        MoneyTransferWorkflow workflow = client.newWorkflowStub(MoneyTransferWorkflow.class, options);
 
         String referenceId = UUID.randomUUID().toString();
         String fromAccount = "001-001";

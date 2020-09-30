@@ -1,4 +1,4 @@
-package transfermoneyapp;
+package moneytransferapp;
 
 import static org.mockito.Matchers.eq;
 import static org.mockito.Mockito.mock;
@@ -12,7 +12,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-public class TransferMoneyWorkflowTest {
+public class MoneyTransferWorkflowTest {
 
     private TestWorkflowEnvironment testEnv;
     private Worker worker;
@@ -21,8 +21,8 @@ public class TransferMoneyWorkflowTest {
     @Before
     public void setUp() {
         testEnv = TestWorkflowEnvironment.newInstance();
-        worker = testEnv.newWorker(Shared.TRANSFER_MONEY_TASK_QUEUE);
-        worker.registerWorkflowImplementationTypes(TransferMoneyWorkflowImpl.class);
+        worker = testEnv.newWorker(Shared.MONEY_TRANSFER_TASK_QUEUE);
+        worker.registerWorkflowImplementationTypes(MoneyTransferWorkflowImpl.class);
         workflowClient = testEnv.getWorkflowClient();
     }
 
@@ -37,9 +37,9 @@ public class TransferMoneyWorkflowTest {
         worker.registerActivitiesImplementations(activities);
         testEnv.start();
         WorkflowOptions options = WorkflowOptions.newBuilder()
-                .setTaskQueue(Shared.TRANSFER_MONEY_TASK_QUEUE)
+                .setTaskQueue(Shared.MONEY_TRANSFER_TASK_QUEUE)
                 .build();
-        TransferMoneyWorkflow workflow = workflowClient.newWorkflowStub(TransferMoneyWorkflow.class, options);
+        MoneyTransferWorkflow workflow = workflowClient.newWorkflowStub(MoneyTransferWorkflow.class, options);
         long start = testEnv.currentTimeMillis();
         workflow.transfer("account1", "account2", "reference1", 1.23);
         verify(activities).withdraw(eq("account1"), eq("reference1"), eq(1.23));
