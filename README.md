@@ -10,7 +10,7 @@ To use the template, either download it as a zip file or click "Use Template" to
 
 ## Build the project
 
-In the project's root directory run:
+Either open the project in IntelliJ, which will automatically build it, or in the project's root directory run:
 
 ```
 ./gradlew build
@@ -20,13 +20,13 @@ In the project's root directory run:
 
 First, make sure the [Temporal server](https://docs.temporal.io/docs/install-temporal-server) is running.
 
-To start the Workflow, run:
+To start the Workflow, either run the InitiateMoneyTransfer class from IntelliJ or from the project root run:
 
 ```
 ./gradlew initiateTransfer
 ```
 
-To start the Worker, run:
+To start the Worker, either run the MoneyTransferWorker class from IntelliJ or from the project root run:
 
 ```
 ./gradlew startWorker

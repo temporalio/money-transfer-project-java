@@ -8,6 +8,7 @@ import io.temporal.client.WorkflowClient;
 import io.temporal.client.WorkflowOptions;
 import io.temporal.testing.TestWorkflowEnvironment;
 import io.temporal.worker.Worker;
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -40,12 +41,9 @@ public class MoneyTransferWorkflowTest {
                 .setTaskQueue(Shared.MONEY_TRANSFER_TASK_QUEUE)
                 .build();
         MoneyTransferWorkflow workflow = workflowClient.newWorkflowStub(MoneyTransferWorkflow.class, options);
-        long start = testEnv.currentTimeMillis();
         workflow.transfer("account1", "account2", "reference1", 1.23);
         verify(activities).withdraw(eq("account1"), eq("reference1"), eq(1.23));
         verify(activities).deposit(eq("account2"), eq("reference1"), eq(1.23));
-        long duration = testEnv.currentTimeMillis() - start;
-        System.out.println("Duration: " + duration);
     }
 }
 
