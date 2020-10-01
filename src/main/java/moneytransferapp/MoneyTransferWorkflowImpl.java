@@ -22,7 +22,7 @@ public class MoneyTransferWorkflowImpl implements MoneyTransferWorkflow {
             // Temporal retries failures by default, this is simply an example.
             .setRetryOptions(retryoptions)
             .build();
-    // ActivityStubs enable calls to Activities as if they are local methods, but actually perform an RPC.
+    // ActivityStubs enable calls to methods as if the Activity object is local, but actually perform an RPC.
     private final AccountActivity account = Workflow.newActivityStub(AccountActivity.class, options);
 
     // The transfer method is the entry point to the Workflow.
