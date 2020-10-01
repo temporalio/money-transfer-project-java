@@ -23,13 +23,25 @@ repositories {
 dependencies {
     // These dependencies are used by the application.
     implementation 'com.google.guava:guava:29.0-jre'
-    implementation 'io.temporal:temporal-sdk:0.29.1'
+    implementation 'io.temporal:temporal-sdk:1.0.0'
     implementation group: 'ch.qos.logback', name: 'logback-classic', version: '1.2.3'
+
     // Use JUnit test framework
     testImplementation 'junit:junit:4.13'
+    testImplementation group: 'org.mockito', name: 'mockito-all', version: '1.10.19'
 }
 
 application {
     // Define the main class for the application.
-    mainClassName = 'transfermoneyapp.TransferMoneyInitiator'
+    mainClassName = 'moneytransferapp.InitiateMoneyTransfer'
+}
+
+task initiateTransfer(type: JavaExec) {
+    main = 'moneytransferapp.InitiateMoneyTransfer'
+    classpath = sourceSets.main.runtimeClasspath
+}
+
+task startWorker(type: JavaExec) {
+    main = 'moneytransferapp.MoneyTransferWorker'
+    classpath = sourceSets.main.runtimeClasspath
 }

@@ -1,5 +1,4 @@
 <!-- This xml configures the logback logger output. -->
-<!-- @@@SNIPSTART java-samples-logback-dependency-configuration -->
 <configuration>
     <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
         <!-- encoders are assigned the type
@@ -13,4 +12,3 @@
         <appender-ref ref="STDOUT" />
     </root>
 </configuration>
-<!-- @@@SNIPEND -->
