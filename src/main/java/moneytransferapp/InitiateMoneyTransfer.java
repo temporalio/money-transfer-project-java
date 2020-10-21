@@ -1,5 +1,6 @@
 package moneytransferapp;
 
+import io.temporal.api.common.v1.WorkflowExecution;
 import io.temporal.client.WorkflowClient;
 import io.temporal.client.WorkflowOptions;
 import io.temporal.serviceclient.WorkflowServiceStubs;
@@ -26,11 +27,10 @@ public class InitiateMoneyTransfer {
         String fromAccount = "001-001";
         String toAccount = "002-002";
         double amount = 18.74;
-        // Uncomment for synchronous execution. This process waits for the Workflow to complete.
-        // workflow.transfer(fromAccount, toAccount, referenceId, amount);
         // Asynchronous execution. This process will exit after making this call.
-        WorkflowClient.start(workflow::transfer, fromAccount, toAccount, referenceId, amount);
-        System.out.printf("Transfer of $%f from account %s to account %s is processing", amount, fromAccount, toAccount);
+        WorkflowExecution we = WorkflowClient.start(workflow::transfer, fromAccount, toAccount, referenceId, amount);
+        System.out.printf("\nTransfer of $%f from account %s to account %s is processing\n", amount, fromAccount, toAccount);
+        System.out.printf("\nWorkflowID: %s RunID: %s", we.getWorkflowId(), we.getRunId());
         System.exit(0);
     }
 }
