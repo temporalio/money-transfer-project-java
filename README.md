@@ -20,7 +20,7 @@ Either open the project in IntelliJ, which will automatically build it, or in th
 
 ## Run the Workflow
 
-First, make sure the [Temporal server](https://docs.temporal.io/docs/install-temporal-server) is running.
+First, make sure the [Temporal server](https://docs.temporal.io/docs/server-quick-install/) is running.
 
 To start the Workflow, either run the InitiateMoneyTransfer class from IntelliJ or from the project root run:
 
