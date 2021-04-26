@@ -2,7 +2,7 @@
 
 This project can be used as a template to start building your own Temporal Workflow application.
 
-Follow the [Run your first app tutorial](https://docs/temporal.io/docs/java-run-your-first-app) to learn more about Temporal Workflows.
+Follow the [Run your first app tutorial](https://docs.temporal.io/docs/java/run-your-first-app-tutorial) to learn more about Temporal Workflows.
 
 This project uses [Snipsync](https://github.com/temporalio/snipsync) comment wrappers to automatically keep code snippets up to date within our documentation.
 
@@ -20,7 +20,7 @@ Either open the project in IntelliJ, which will automatically build it, or in th
 
 ## Run the Workflow
 
-First, make sure the [Temporal server](https://docs.temporal.io/docs/server-quick-install/) is running.
+First, make sure the [Temporal server](https://docs.temporal.io/docs/server/quick-install) is running.
 
 To start the Workflow, either run the InitiateMoneyTransfer class from IntelliJ or from the project root run:
 
