@@ -5,10 +5,12 @@ import io.temporal.workflow.Workflow;
 import io.temporal.common.RetryOptions;
 
 import java.time.Duration;
-import java.util.*;
+import java.util.HashMap;
+import java.util.Map;
 
 // @@@SNIPSTART money-transfer-project-template-java-workflow-implementation
 public class MoneyTransferWorkflowImpl implements MoneyTransferWorkflow {
+    private static final String WITHDRAW = "Withdraw";
     // RetryOptions specify how to automatically handle retries when Activities fail.
     private final RetryOptions retryoptions = RetryOptions.newBuilder()
             .setInitialInterval(Duration.ofSeconds(1))
@@ -24,8 +26,8 @@ public class MoneyTransferWorkflowImpl implements MoneyTransferWorkflow {
             .setRetryOptions(retryoptions)
             .build();
     // ActivityStubs enable calls to methods as if the Activity object is local, but actually perform an RPC.
-    Map<String, ActivityOptions> perActivityMethodOptions = new HashMap<>(){{
-        put("Withdraw", ActivityOptions.newBuilder().setHeartbeatTimeout(Duration.ofSeconds(5)).build());
+    private final Map<String, ActivityOptions> perActivityMethodOptions = new HashMap<>(){{
+        put(WITHDRAW, ActivityOptions.newBuilder().setHeartbeatTimeout(Duration.ofSeconds(5)).build());
     }};
     private final AccountActivity account = Workflow.newActivityStub(AccountActivity.class, defaultActivityOptions, perActivityMethodOptions);
 
