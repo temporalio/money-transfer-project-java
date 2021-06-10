@@ -13,10 +13,10 @@ public class MoneyTransferWorkflowImpl implements MoneyTransferWorkflow {
     private final RetryOptions retryoptions = RetryOptions.newBuilder()
             .setInitialInterval(Duration.ofSeconds(1))
             .setMaximumInterval(Duration.ofSeconds(100))
-            .setBackoffCoefficient(2)   
+            .setBackoffCoefficient(2)
             .setMaximumAttempts(500)
             .build();
-    private final ActivityOptions options = ActivityOptions.newBuilder()
+    private final ActivityOptions defaultActivityOptions = ActivityOptions.newBuilder()
             // Timeout options specify when to automatically timeout Activities if the process is taking too long.
             .setStartToCloseTimeout(Duration.ofSeconds(5))
             // Optionally provide customized RetryOptions.
@@ -24,10 +24,10 @@ public class MoneyTransferWorkflowImpl implements MoneyTransferWorkflow {
             .setRetryOptions(retryoptions)
             .build();
     // ActivityStubs enable calls to methods as if the Activity object is local, but actually perform an RPC.
-    Map<String, ActivityOptions> activityMethodOptions = new HashMap<>(){{
+    Map<String, ActivityOptions> perActivityMethodOptions = new HashMap<>(){{
         put("Withdraw", ActivityOptions.newBuilder().setHeartbeatTimeout(Duration.ofSeconds(5)).build());
     }};
-    private final AccountActivity account = Workflow.newActivityStub(AccountActivity.class, options, activityMethodOptions);
+    private final AccountActivity account = Workflow.newActivityStub(AccountActivity.class, defaultActivityOptions, perActivityMethodOptions);
 
     // The transfer method is the entry point to the Workflow.
     // Activity method executions can be orchestrated here or from within other Activity methods.
