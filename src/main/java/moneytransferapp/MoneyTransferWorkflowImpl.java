@@ -26,7 +26,7 @@ public class MoneyTransferWorkflowImpl implements MoneyTransferWorkflow {
             .setRetryOptions(retryoptions)
             .build();
     // ActivityStubs enable calls to methods as if the Activity object is local, but actually perform an RPC.
-    private final Map<String, ActivityOptions> perActivityMethodOptions = new HashMap<>(){{
+    private final Map<String, ActivityOptions> perActivityMethodOptions = new HashMap<String, ActivityOptions>(){{
         put(WITHDRAW, ActivityOptions.newBuilder().setHeartbeatTimeout(Duration.ofSeconds(5)).build());
     }};
     private final AccountActivity account = Workflow.newActivityStub(AccountActivity.class, defaultActivityOptions, perActivityMethodOptions);
