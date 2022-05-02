@@ -11,7 +11,7 @@ public class MoneyTransferWorker {
     public static void main(String[] args) {
 
         // WorkflowServiceStubs is a gRPC stubs wrapper that talks to the local Docker instance of the Temporal server.
-        WorkflowServiceStubs service = WorkflowServiceStubs.newInstance();
+        WorkflowServiceStubs service = WorkflowServiceStubs.newLocalServiceStubs();
         WorkflowClient client = WorkflowClient.newInstance(service);
         // Worker factory is used to create Workers that poll specific Task Queues.
         WorkerFactory factory = WorkerFactory.newInstance(client);
