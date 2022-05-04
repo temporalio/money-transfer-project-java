@@ -13,7 +13,7 @@ public class InitiateMoneyTransfer {
     public static void main(String[] args) throws Exception {
 
         // WorkflowServiceStubs is a gRPC stubs wrapper that talks to the local Docker instance of the Temporal server.
-        WorkflowServiceStubs service = WorkflowServiceStubs.newInstance();
+        WorkflowServiceStubs service = WorkflowServiceStubs.newLocalServiceStubs();
         WorkflowOptions options = WorkflowOptions.newBuilder()
                 .setTaskQueue(Shared.MONEY_TRANSFER_TASK_QUEUE)
                 // A WorkflowId prevents this it from having duplicate instances, remove it to duplicate.
