@@ -34,7 +34,7 @@ public class MoneyTransferWorkflowTest {
 
     @Test
     public void testTransfer() {
-        AccountActivity activities = mock(AccountActivity.class);
+        AccountActivity activities = mock(AccountActivityImpl.class);
         worker.registerActivitiesImplementations(activities);
         testEnv.start();
         WorkflowOptions options = WorkflowOptions.newBuilder()
