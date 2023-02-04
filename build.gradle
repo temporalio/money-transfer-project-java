@@ -16,7 +16,7 @@ repositories {
 
 dependencies {
     // These dependencies are used by the application.
-    implementation group: 'io.temporal', name: 'temporal-sdk', version: '1.11.0'
+    implementation group: 'io.temporal', name: 'temporal-sdk', version: '1.13.0'
     implementation group: 'com.google.guava', name: 'guava', version: '31.0.1-jre'
     implementation group: 'ch.qos.logback', name: 'logback-classic', version: '1.2.11'
 
