@@ -31,5 +31,5 @@ To start the Workflow, either run the InitiateMoneyTransfer class from IntelliJ 
 To start the Worker, either run the MoneyTransferWorker class from IntelliJ or from the project root run:
 
 ```
-./gradlew startWorker
+./gradlew startWorker --console=plain
 ```
