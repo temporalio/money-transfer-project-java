@@ -14,24 +14,27 @@ repositories {
     mavenCentral()
 }
 
+ext {
+    javaSDKVersion = '1.18.1'
+}
+
 dependencies {
     // These dependencies are used by the application.
-    implementation group: 'io.temporal', name: 'temporal-sdk', version: '1.11.0'
-    implementation group: 'com.google.guava', name: 'guava', version: '31.0.1-jre'
-    implementation group: 'ch.qos.logback', name: 'logback-classic', version: '1.2.11'
+    implementation "io.temporal:temporal-sdk:$javaSDKVersion"
+    implementation "ch.qos.logback:logback-classic:1.2.11"
 
     // Use JUnit test framework
-    testImplementation group: 'io.temporal', name: 'temporal-testing', version: '1.11.0'
-    testImplementation group: 'junit', name: 'junit', version: '4.13.2'
-    testImplementation group: 'org.mockito', name: 'mockito-core', version: '4.5.1'
+    testImplementation "io.temporal:temporal-testing:$javaSDKVersion"
+    testImplementation "junit:junit:4.13.2"
+    testImplementation "org.mockito:mockito-core:5.1.1"
 }
 
 task initiateTransfer(type: JavaExec) {
-    main = 'moneytransferapp.InitiateMoneyTransfer'
+    mainClass = 'moneytransferapp.InitiateMoneyTransfer'
     classpath = sourceSets.main.runtimeClasspath
 }
 
 task startWorker(type: JavaExec) {
-    main = 'moneytransferapp.MoneyTransferWorker'
+    mainClass = 'moneytransferapp.MoneyTransferWorker'
     classpath = sourceSets.main.runtimeClasspath
 }
