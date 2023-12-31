@@ -21,7 +21,7 @@ ext {
 dependencies {
     // These dependencies are used by the application.
     implementation "io.temporal:temporal-sdk:$javaSDKVersion"
-    implementation "ch.qos.logback:logback-classic:1.2.11"
+    implementation "ch.qos.logback:logback-classic:1.3.12"
 
     // Use JUnit test framework
     testImplementation "io.temporal:temporal-testing:$javaSDKVersion"
