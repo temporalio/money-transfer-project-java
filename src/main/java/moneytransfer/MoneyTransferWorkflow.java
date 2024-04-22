@@ -6,10 +6,9 @@ import io.temporal.workflow.WorkflowMethod;
 
 @WorkflowInterface
 public interface MoneyTransferWorkflow {
-
     // The Workflow Execution that starts this method can be initiated from code or
     // from the 'temporal' CLI utility.
     @WorkflowMethod
-    void transfer(String fromAccountId, String toAccountId, String referenceId, double amount);
+    void transfer(TransactionDetails transaction);
 }
 // @@@SNIPEND

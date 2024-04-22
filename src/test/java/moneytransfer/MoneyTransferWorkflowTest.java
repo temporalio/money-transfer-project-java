@@ -42,7 +42,8 @@ public class MoneyTransferWorkflowTest {
                 .setTaskQueue(Shared.MONEY_TRANSFER_TASK_QUEUE)
                 .build();
         MoneyTransferWorkflow workflow = workflowClient.newWorkflowStub(MoneyTransferWorkflow.class, options);
-        workflow.transfer("account1", "account2", "reference1", 1.23);
+        TransactionDetails transaction = new CoreTransactionDetails("account1", "account2", "reference1", 1.23);
+        workflow.transfer(transaction);
         verify(activities).withdraw(eq("account1"), eq("reference1"), eq(1.23));
         verify(activities).deposit(eq("account2"), eq("reference1"), eq(1.23));
     }

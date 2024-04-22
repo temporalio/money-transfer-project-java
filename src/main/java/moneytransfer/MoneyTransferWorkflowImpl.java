@@ -44,9 +44,12 @@ public class MoneyTransferWorkflowImpl implements MoneyTransferWorkflow {
     // Activity method executions can be orchestrated here or from within
     // other Activity methods.
     @Override
-    public void transfer(String fromAccountId, String toAccountId, String referenceId, double amount) {
-        accountActivityStub.withdraw(fromAccountId, referenceId, amount);
-        accountActivityStub.deposit(toAccountId, referenceId, amount);
+    public void transfer(TransactionDetails transaction) {
+        System.out.println("Starting");
+        accountActivityStub.withdraw(transaction.getSourceAccountId(), transaction.getTransactionReferenceId(), transaction.getAmountToTransfer());
+        System.out.println("Working");
+        accountActivityStub.deposit(transaction.getDestinationAccountId(), transaction.getTransactionReferenceId(), transaction.getAmountToTransfer());
+        System.out.println("Done");
     }
 }
 // @@@SNIPEND

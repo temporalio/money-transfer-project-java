@@ -6,19 +6,21 @@ import io.temporal.client.WorkflowClient;
 import io.temporal.client.WorkflowOptions;
 import io.temporal.serviceclient.WorkflowServiceStubs;
 
+import java.security.SecureRandom;
+import java.time.Instant;
 import java.util.UUID;
 import java.util.Random;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.concurrent.ThreadLocalRandom;
-import java.time.Instant;
 
 public class TransferApp {
-    private static final Random random;
+    private static final SecureRandom random;
 
     static {
         // Seed the random number generator with nano date
-        random = new Random(Instant.now().getNano());
+        random = new SecureRandom();
+        random.setSeed(Instant.now().getNano());
     }
 
     public static String randomAccountIdentifier() {
@@ -55,11 +57,11 @@ public class TransferApp {
         String fromAccount = randomAccountIdentifier();
         String toAccount = randomAccountIdentifier();
         double amountToTransfer = ThreadLocalRandom.current().nextDouble(15.0, 25.0);
+        TransactionDetails transaction = new CoreTransactionDetails(fromAccount, toAccount, referenceId, amountToTransfer);
 
         // Perform asynchronous execution.
         // This process exits after making this call and printing details.
-        WorkflowExecution we = WorkflowClient.start(
-            workflow::transfer, fromAccount, toAccount, referenceId, amountToTransfer);
+        WorkflowExecution we = WorkflowClient.start(workflow::transfer, transaction);
 
         System.out.printf("\nMONEY TRANSFER PROJECT\n\n");
         System.out.printf("Initiating transfer of $%.2f from [Account %s] to [Account %s].\n\n",
