@@ -1,13 +1,14 @@
+// @@@SNIPSTART money-transfer-java-workflow-interface
 package moneytransferapp;
 
 import io.temporal.workflow.WorkflowInterface;
 import io.temporal.workflow.WorkflowMethod;
 
-// @@@SNIPSTART money-transfer-project-template-java-workflow-interface
 @WorkflowInterface
 public interface MoneyTransferWorkflow {
 
-    // The Workflow method is called by the initiator either via code or CLI.
+    // The Workflow Execution that starts this method can be initiated from code or
+    // from the 'temporal' CLI utility.
     @WorkflowMethod
     void transfer(String fromAccountId, String toAccountId, String referenceId, double amount);
 }

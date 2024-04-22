@@ -1,3 +1,4 @@
+// @@@SNIPSTART money-transfer-java-tests
 package moneytransferapp;
 
 import static org.mockito.ArgumentMatchers.eq;
@@ -46,3 +47,4 @@ public class MoneyTransferWorkflowTest {
         verify(activities).deposit(eq("account2"), eq("reference1"), eq(1.23));
     }
 }
+// @@@SNIPEND
