@@ -5,7 +5,7 @@ public class CoreTransactionDetails implements TransactionDetails {
     private String sourceAccountId;
     private String destinationAccountId;
     private String transactionReferenceId;
-    private double amountToTransfer;
+    private int amountToTransfer;
 
     // MARK: Constructor
     
@@ -16,7 +16,8 @@ public class CoreTransactionDetails implements TransactionDetails {
     public CoreTransactionDetails(String sourceAccountId,
                                   String destinationAccountId,
                                   String transactionReferenceId,
-                                  double amountToTransfer) {
+                                  int amountToTransfer)
+    {
         this.sourceAccountId = sourceAccountId;
         this.destinationAccountId = destinationAccountId;
         this.transactionReferenceId = transactionReferenceId;
@@ -37,7 +38,7 @@ public class CoreTransactionDetails implements TransactionDetails {
         return transactionReferenceId;
     }
 
-    public double getAmountToTransfer() {
+    public int getAmountToTransfer() {
         return amountToTransfer;
     }
 }

@@ -24,7 +24,7 @@ public class TransferApp {
     }
 
     public static String randomAccountIdentifier() {
-        return IntStream.range(0, 11)
+        return IntStream.range(0, 9)
                 .mapToObj(i -> String.valueOf(random.nextInt(10)))
                 .collect(Collectors.joining());
     }
@@ -56,7 +56,7 @@ public class TransferApp {
         String referenceId = UUID.randomUUID().toString().substring(0, 18);
         String fromAccount = randomAccountIdentifier();
         String toAccount = randomAccountIdentifier();
-        double amountToTransfer = ThreadLocalRandom.current().nextDouble(15.0, 25.0);
+        int amountToTransfer = ThreadLocalRandom.current().nextInt(15, 75);
         TransactionDetails transaction = new CoreTransactionDetails(fromAccount, toAccount, referenceId, amountToTransfer);
 
         // Perform asynchronous execution.
@@ -64,7 +64,7 @@ public class TransferApp {
         WorkflowExecution we = WorkflowClient.start(workflow::transfer, transaction);
 
         System.out.printf("\nMONEY TRANSFER PROJECT\n\n");
-        System.out.printf("Initiating transfer of $%.2f from [Account %s] to [Account %s].\n\n",
+        System.out.printf("Initiating transfer of $%d from [Account %s] to [Account %s].\n\n",
                           amountToTransfer, fromAccount, toAccount);
         System.out.printf("[WorkflowID: %s]\n[RunID: %s]\n\n", we.getWorkflowId(), we.getRunId());
         System.exit(0);

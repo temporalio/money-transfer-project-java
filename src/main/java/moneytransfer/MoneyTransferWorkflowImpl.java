@@ -45,11 +45,68 @@ public class MoneyTransferWorkflowImpl implements MoneyTransferWorkflow {
     // other Activity methods.
     @Override
     public void transfer(TransactionDetails transaction) {
-        System.out.println("Starting");
-        accountActivityStub.withdraw(transaction.getSourceAccountId(), transaction.getTransactionReferenceId(), transaction.getAmountToTransfer());
-        System.out.println("Working");
-        accountActivityStub.deposit(transaction.getDestinationAccountId(), transaction.getTransactionReferenceId(), transaction.getAmountToTransfer());
-        System.out.println("Done");
+        String sourceAccountId = transaction.getSourceAccountId();
+        String destinationAccountId = transaction.getDestinationAccountId();
+        String transactionReferenceId = transaction.getTransactionReferenceId();
+        int amountToTransfer = transaction.getAmountToTransfer();
+
+        try {
+            accountActivityStub.withdraw(sourceAccountId, transactionReferenceId, amountToTransfer);
+        } catch (Exception e) {
+            // If the withdrawal fails, for any exception
+            System.out.printf("[%s] Withdrawal of $%d from account %s failed",
+                transactionReferenceId, amountToTransfer, sourceAccountId);
+            System.out.flush();
+
+            // Transaction ends here
+            return;
+        }
+
+        // Change this from true to false to force the deposit to fail
+        boolean transferShouldSucceed = true;
+
+        try {
+            accountActivityStub.deposit(destinationAccountId, transactionReferenceId, amountToTransfer, transferShouldSucceed);
+
+            // Successful. Transaction ends here
+            System.out.printf("[%s] Transaction succeeded.\n", transactionReferenceId);
+            System.out.flush();
+            return;
+        } catch (Exception e) {
+            // If the deposit fails, for any exception
+            System.out.printf("[%s] Deposit of $%d to account %s failed.\n",
+                transactionReferenceId, amountToTransfer, destinationAccountId);
+            System.out.flush();
+        }
+
+        // Continue by reversing transaction
+
+        // Change this from true to false to force the recovery compensation to fail
+        boolean refundShouldSucceed = true;
+
+        try {
+            // Refund the withdrawal
+            System.out.printf("[%s] Refunding $%d to account %s.\n",
+                transactionReferenceId, amountToTransfer, destinationAccountId);
+            System.out.flush();
+            accountActivityStub.deposit(sourceAccountId, transactionReferenceId, amountToTransfer, refundShouldSucceed);
+
+            // Recovery successful. Transaction ends here
+            System.out.printf("[%s] Refund to originating account was successful.\n",
+                transactionReferenceId);
+            System.out.printf("[%s] Transaction is complete. No transfer made.\n",
+                transactionReferenceId);
+            return;
+        } catch (Exception e) {
+            // A recovery mechanism can fail too. Handle any exception
+            System.out.printf("[%s] Deposit of $%d to account %s failed. Did not compensate withdrawal.\n",
+                transactionReferenceId, amountToTransfer, destinationAccountId);
+            System.out.flush();
+        }
+
+        System.out.printf("[%s] Ended transaction in inconsistent state.\n",
+            transactionReferenceId);
+        System.out.flush();
     }
 }
 // @@@SNIPEND

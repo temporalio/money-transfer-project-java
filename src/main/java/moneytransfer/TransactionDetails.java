@@ -7,7 +7,7 @@ public interface TransactionDetails {
     String getSourceAccountId();
     String getDestinationAccountId();
     String getTransactionReferenceId();
-    double getAmountToTransfer();
+    int getAmountToTransfer();
 }
 // @@@SNIPEND
 
