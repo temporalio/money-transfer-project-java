@@ -66,7 +66,7 @@ public class TransferApp {
         System.out.printf("\nMONEY TRANSFER PROJECT\n\n");
         System.out.printf("Initiating transfer of $%d from [Account %s] to [Account %s].\n\n",
                           amountToTransfer, fromAccount, toAccount);
-        System.out.printf("[WorkflowID: %s]\n[RunID: %s]\n\n", we.getWorkflowId(), we.getRunId());
+        System.out.printf("[WorkflowID: %s]\n[RunID: %s]\n[Transaction Reference: %s]\n\n", we.getWorkflowId(), we.getRunId(), referenceId);
         System.exit(0);
     }
 }

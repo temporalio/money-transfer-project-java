@@ -101,12 +101,12 @@ public class MoneyTransferWorkflowImpl implements MoneyTransferWorkflow {
             // A recovery mechanism can fail too. Handle any exception
             System.out.printf("[%s] Deposit of $%d to account %s failed. Did not compensate withdrawal.\n",
                 transactionReferenceId, amountToTransfer, destinationAccountId);
+            System.out.printf("[%s] Workflow failed.", transactionReferenceId);
             System.out.flush();
-        }
 
-        System.out.printf("[%s] Ended transaction in inconsistent state.\n",
-            transactionReferenceId);
-        System.out.flush();
+            // Rethrowing the exception causes a Workflow Task failure
+            throw(e);
+        }
     }
 }
 // @@@SNIPEND
