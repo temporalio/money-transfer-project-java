@@ -1,6 +1,5 @@
 package moneytransferapp;
 
-// @@@SNIPSTART money-transfer-project-template-java-activity-implementation
 public class AccountActivityImpl implements AccountActivity {
 
     @Override
@@ -23,4 +22,3 @@ public class AccountActivityImpl implements AccountActivity {
         // throw new RuntimeException("simulated");
     }
 }
-// @@@SNIPEND

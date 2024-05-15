@@ -7,7 +7,6 @@ import io.temporal.serviceclient.WorkflowServiceStubs;
 
 import java.util.UUID;
 
-// @@@SNIPSTART money-transfer-project-template-java-workflow-initiator
 public class InitiateMoneyTransfer {
 
     public static void main(String[] args) throws Exception {
@@ -34,4 +33,3 @@ public class InitiateMoneyTransfer {
         System.exit(0);
     }
 }
-// @@@SNIPEND

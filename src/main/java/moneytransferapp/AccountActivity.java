@@ -1,7 +1,5 @@
 package moneytransferapp;
 
-// @@@SNIPSTART money-transfer-project-template-java-activity-interface
-
 import io.temporal.activity.ActivityInterface;
 import io.temporal.activity.ActivityMethod;
 
@@ -14,4 +12,3 @@ public interface AccountActivity {
     @ActivityMethod
     void withdraw(String accountId, String referenceId, double amount);
 }
-// @@@SNIPEND

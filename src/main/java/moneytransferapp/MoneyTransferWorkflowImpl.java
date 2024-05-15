@@ -8,7 +8,6 @@ import java.time.Duration;
 import java.util.HashMap;
 import java.util.Map;
 
-// @@@SNIPSTART money-transfer-project-template-java-workflow-implementation
 public class MoneyTransferWorkflowImpl implements MoneyTransferWorkflow {
     private static final String WITHDRAW = "Withdraw";
     // RetryOptions specify how to automatically handle retries when Activities fail.
@@ -40,4 +39,3 @@ public class MoneyTransferWorkflowImpl implements MoneyTransferWorkflow {
         account.deposit(toAccountId, referenceId, amount);
     }
 }
-// @@@SNIPEND
