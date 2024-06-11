@@ -12,6 +12,10 @@ public interface AccountActivity {
 
     // Deposit an amount of money into the destination account
     @ActivityMethod
-    void deposit(String accountId, String referenceId, int amount, boolean activityShouldSucceed);
+    void deposit(String accountId, String referenceId, int amount);
+
+    // Compensate a failed deposit by refunding to the original account
+    @ActivityMethod
+    void refund(String accountId, String referenceId, int amount);
 }
 // @@@SNIPEND
