@@ -1,0 +1,158 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXFileReference section */
+		8E4DCB342C19E94C0043B0FF /* .DS_Store */ = {isa = PBXFileReference; lastKnownFileType = file; path = .DS_Store; sourceTree = "<group>"; };
+		8E4DCB352C19E94C0043B0FF /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		8E4DCB362C19E94C0043B0FF /* Makefile */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.make; path = Makefile; sourceTree = "<group>"; };
+		8E4DCB372C19E94C0043B0FF /* target */ = {isa = PBXFileReference; lastKnownFileType = folder; path = target; sourceTree = "<group>"; };
+		8E4DCB382C19E94C0043B0FF /* pom.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = pom.xml; sourceTree = "<group>"; };
+		8E4DCB392C19E94C0043B0FF /* workflow_input.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = workflow_input.png; sourceTree = "<group>"; };
+		8E4DCB3A2C19E94C0043B0FF /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		8E4DCB3B2C19E94C0043B0FF /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		8E4DCB3C2C19E94C0043B0FF /* .gitattributes */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitattributes; sourceTree = "<group>"; };
+		8E4DCB3D2C19E94C0043B0FF /* .git */ = {isa = PBXFileReference; lastKnownFileType = folder; path = .git; sourceTree = "<group>"; };
+		8E4DCB3E2C19E94C0043B0FF /* src */ = {isa = PBXFileReference; lastKnownFileType = folder; path = src; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXGroup section */
+		8E4DCB2E2C19E94C0043B0FF = {
+			isa = PBXGroup;
+			children = (
+				8E4DCB342C19E94C0043B0FF /* .DS_Store */,
+				8E4DCB352C19E94C0043B0FF /* LICENSE */,
+				8E4DCB362C19E94C0043B0FF /* Makefile */,
+				8E4DCB372C19E94C0043B0FF /* target */,
+				8E4DCB382C19E94C0043B0FF /* pom.xml */,
+				8E4DCB392C19E94C0043B0FF /* workflow_input.png */,
+				8E4DCB3A2C19E94C0043B0FF /* README.md */,
+				8E4DCB3B2C19E94C0043B0FF /* .gitignore */,
+				8E4DCB3C2C19E94C0043B0FF /* .gitattributes */,
+				8E4DCB3D2C19E94C0043B0FF /* .git */,
+				8E4DCB3E2C19E94C0043B0FF /* src */,
+			);
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXLegacyTarget section */
+		8E4DCB332C19E94C0043B0FF /* money-transfer-project-java */ = {
+			isa = PBXLegacyTarget;
+			buildArgumentsString = "$(ACTION)";
+			buildConfigurationList = 8E4DCB3F2C19E94C0043B0FF /* Build configuration list for PBXLegacyTarget "money-transfer-project-java" */;
+			buildPhases = (
+			);
+			buildToolPath = /usr/bin/make;
+			buildWorkingDirectory = "/Users/ericasadun/Desktop/money-transfer-project-java";
+			dependencies = (
+			);
+			name = "money-transfer-project-java";
+			passBuildSettingsInEnvironment = 1;
+			productName = "money-transfer-project-java";
+		};
+/* End PBXLegacyTarget section */
+
+/* Begin PBXProject section */
+		8E4DCB2F2C19E94C0043B0FF /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+			};
+			buildConfigurationList = 8E4DCB322C19E94C0043B0FF /* Build configuration list for PBXProject "money-transfer-project-java" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 8E4DCB2E2C19E94C0043B0FF;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				8E4DCB332C19E94C0043B0FF /* money-transfer-project-java */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin XCBuildConfiguration section */
+		8E4DCB302C19E94C0043B0FF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				COPY_PHASE_STRIP = NO;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx10.6;
+			};
+			name = Debug;
+		};
+		8E4DCB312C19E94C0043B0FF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				COPY_PHASE_STRIP = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				SDKROOT = macosx10.6;
+			};
+			name = Release;
+		};
+		8E4DCB402C19E94C0043B0FF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				DEBUGGING_SYMBOLS = YES;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				PRODUCT_NAME = "money-transfer-project-java";
+			};
+			name = Debug;
+		};
+		8E4DCB412C19E94C0043B0FF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				PRODUCT_NAME = "money-transfer-project-java";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		8E4DCB322C19E94C0043B0FF /* Build configuration list for PBXProject "money-transfer-project-java" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8E4DCB302C19E94C0043B0FF /* Debug */,
+				8E4DCB312C19E94C0043B0FF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8E4DCB3F2C19E94C0043B0FF /* Build configuration list for PBXLegacyTarget "money-transfer-project-java" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8E4DCB402C19E94C0043B0FF /* Debug */,
+				8E4DCB412C19E94C0043B0FF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 8E4DCB2F2C19E94C0043B0FF /* Project object */;
+}

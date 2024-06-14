@@ -1,4 +1,4 @@
-// @@@SNIPSTART money-transfer-java-transactionDetails
+// @@@SNIPSTART money-transfer-java-transaction-details
 package moneytransferapp;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
