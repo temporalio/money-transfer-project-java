@@ -17,7 +17,7 @@ public class MoneyTransferWorkflowImpl implements MoneyTransferWorkflow {
         .setInitialInterval(Duration.ofSeconds(1)) // Wait 1 second before first retry
         .setMaximumInterval(Duration.ofSeconds(20)) // Do not exceed 20 seconds between retries
         .setBackoffCoefficient(2) // Wait 1 second, then 2, then 4, etc
-        .setMaximumAttempts(5) // Fail after 5 attempts
+        .setMaximumAttempts(5000) // Fail after 5000 attempts
         .build();
 
     // ActivityOptions specify the limits on how long an Activity can execute before
@@ -25,7 +25,7 @@ public class MoneyTransferWorkflowImpl implements MoneyTransferWorkflow {
     private final ActivityOptions defaultActivityOptions = ActivityOptions.newBuilder()
         .setRetryOptions(retryoptions) // Apply the RetryOptions defined above
         .setStartToCloseTimeout(Duration.ofSeconds(2)) // Max execution time for single Activity
-        .setScheduleToCloseTimeout(Duration.ofSeconds(5)) // Entire duration from scheduling to completion including queue time
+        .setScheduleToCloseTimeout(Duration.ofSeconds(5000)) // Entire duration from scheduling to completion including queue time
         .build();
 
     private final Map<String, ActivityOptions> perActivityMethodOptions = new HashMap<String, ActivityOptions>() {{
