@@ -26,22 +26,22 @@
     
     <!--
       Temporal's Java SDK
-      Developed with version 1.22.2
+      Developed with version 1.24.1
     -->
     <dependency>
       <groupId>io.temporal</groupId>
       <artifactId>temporal-sdk</artifactId>
-      <version>1.22.2</version>
+      <version>1.24.1</version>
     </dependency>
 
     <!--
       Temporal application testing: https://docs.temporal.io/dev-guide/java/testing#setup-testing-dependency
-      Developed with version 1.22.2
+      Developed with version 1.24.1
     -->
     <dependency>
       <groupId>io.temporal</groupId>
       <artifactId>temporal-testing</artifactId>
-      <version>1.22.2</version>
+      <version>1.24.1</version>
       <scope>test</scope>
     </dependency>
 
