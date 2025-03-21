@@ -1,8 +1,6 @@
 package moneytransferapp;
 
-import io.grpc.Metadata;
 import io.grpc.netty.shaded.io.netty.handler.ssl.SslContext;
-import io.grpc.stub.MetadataUtils;
 import io.temporal.authorization.AuthorizationGrpcMetadataProvider;
 import io.temporal.client.WorkflowClient;
 import io.temporal.client.WorkflowClientOptions;
@@ -118,24 +116,14 @@ public class ClientProvider {
     public static WorkflowClient getApiKeyClient(String hostPort, String namespace,
             String apiKey) throws SSLException {
 
-        Metadata.Key<String> TEMPORAL_NAMESPACE_HEADER_KEY
-                = Metadata.Key.of("temporal-namespace", Metadata.ASCII_STRING_MARSHALLER);
-        Metadata metadata = new Metadata();
-        metadata.put(TEMPORAL_NAMESPACE_HEADER_KEY, namespace);
-
-        WorkflowServiceStubsOptions.Builder stubOptions
+        WorkflowServiceStubsOptions.Builder stubsOptions
                 = WorkflowServiceStubsOptions.newBuilder()
-                        .setChannelInitializer(
-                                (channel) -> {
-                                    channel.intercept(MetadataUtils.newAttachHeadersInterceptor(metadata));
-                                })
+                        .setTarget(hostPort)
+                        .setSslContext(SimpleSslContextBuilder.noKeyOrCertChain().setUseInsecureTrustManager(false).build())
                         .addGrpcMetadataProvider(
-                                new AuthorizationGrpcMetadataProvider(() -> "Bearer " + apiKey))
-                        .setTarget(hostPort);
-        stubOptions.setSslContext(SimpleSslContextBuilder.noKeyOrCertChain().setUseInsecureTrustManager(false).build());
+                                new AuthorizationGrpcMetadataProvider(() -> "Bearer " + apiKey));
 
-        WorkflowServiceStubs service = WorkflowServiceStubs.newServiceStubs(stubOptions.build());
-
+        WorkflowServiceStubs service = WorkflowServiceStubs.newServiceStubs(stubsOptions.build());
         WorkflowClientOptions clientOptions = WorkflowClientOptions.newBuilder().setNamespace(namespace).build();
         return WorkflowClient.newInstance(service, clientOptions);
     }
