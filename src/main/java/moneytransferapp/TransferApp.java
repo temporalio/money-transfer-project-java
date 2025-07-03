@@ -41,7 +41,7 @@ public class TransferApp {
         // It can be used to start, signal, query, cancel, and terminate Workflows.
         WorkflowClient client = WorkflowClient.newInstance(serviceStub);
 
-        // Workflow options configure  Workflow stubs.
+        // Workflow options configure Workflow stubs.
         // A WorkflowId prevents duplicate instances, which are removed.
         WorkflowOptions options = WorkflowOptions.newBuilder()
                 .setTaskQueue(Shared.MONEY_TRANSFER_TASK_QUEUE)
