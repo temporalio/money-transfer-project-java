@@ -11,8 +11,7 @@
   <version>1.0.0</version>
 
   <!--
-    CAUTION: Temporal applications require Java 8 (1.8) compiler source
-             and target at the time this material was developed.
+    CAUTION: Temporal applications require Java 8 (1.8) or higher.
   -->
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -26,57 +25,51 @@
     
     <!--
       Temporal's Java SDK
-      Developed with version 1.24.1
     -->
     <dependency>
       <groupId>io.temporal</groupId>
       <artifactId>temporal-sdk</artifactId>
-      <version>1.24.1</version>
+      <version>1.31.0</version>
     </dependency>
 
     <!--
       Temporal application testing: https://docs.temporal.io/dev-guide/java/testing#setup-testing-dependency
-      Developed with version 1.24.1
     -->
     <dependency>
       <groupId>io.temporal</groupId>
       <artifactId>temporal-testing</artifactId>
-      <version>1.24.1</version>
+      <version>1.31.0</version>
       <scope>test</scope>
     </dependency>
 
     <!-- NON-TEMPORAL DEPENDENCIES -->
 
     <!--
-      A NOOP logging package to suppress logging warnings.
-      CAUTION: Tutorial only. Not intended for production use.
-      This tutorial was developed with version 2.0.6
+      A NOOP logging package to suppress logger warnings in this tutorial.
     -->
     <dependency>
       <groupId>org.slf4j</groupId>
       <artifactId>slf4j-nop</artifactId>
-      <version>2.0.6</version>
+      <version>2.0.17</version>
     </dependency>
 
     <!--
       JUnit core Java unit testing framework: https://junit.org/junit4/
-      This tutorial was developed with version 4.11
     -->
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
-      <version>4.11</version>
+      <version>4.13.2</version>
       <scope>test</scope>
     </dependency>
 
     <!--
       Mockito mocking framework for unit tests: https://site.mockito.org
-      This tutorial was developed with version 5.10.0
     -->
     <dependency>
       <groupId>org.mockito</groupId>
       <artifactId>mockito-core</artifactId>
-      <version>5.10.0</version>
+      <version>5.14.2</version>
       <scope>test</scope>
     </dependency>
 
