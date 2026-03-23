@@ -3,9 +3,14 @@ package moneytransferapp;
 
 import io.temporal.api.common.v1.WorkflowExecution;
 import io.temporal.client.WorkflowClient;
+import io.temporal.client.WorkflowClientOptions;
 import io.temporal.client.WorkflowOptions;
+import io.temporal.envconfig.ClientConfigProfile;
+import io.temporal.envconfig.LoadClientConfigProfileOptions;
 import io.temporal.serviceclient.WorkflowServiceStubs;
+import io.temporal.serviceclient.WorkflowServiceStubsOptions;
 
+import java.io.IOException;
 import java.util.UUID;
 import java.util.Random;
 
@@ -22,17 +27,21 @@ public class TransferApp {
         return accountId.toString();
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
 
-        // In the Java SDK, a stub represents an element that participates in
-        // Temporal orchestration and communicates using gRPC.
+        // The Client communicates with the Temporal Service, starting the Workflow.
+        // This code will configure a Client based on details specified in the
+        // profile specified by the TEMPORAL_PROFILEenvironment variable. If
+        // unset, it will use the default settings.
+        ClientConfigProfile profile =
+                ClientConfigProfile.load(LoadClientConfigProfileOptions.newBuilder().build());
 
-        // A WorkflowServiceStubs communicates with the Temporal front-end service.
-        WorkflowServiceStubs serviceStub = WorkflowServiceStubs.newLocalServiceStubs();
+        WorkflowServiceStubsOptions serviceStubsOptions = profile.toWorkflowServiceStubsOptions();
+        WorkflowClientOptions clientOptions = profile.toWorkflowClientOptions();
 
-        // A WorkflowClient wraps the stub.
-        // It can be used to start, signal, query, cancel, and terminate Workflows.
-        WorkflowClient client = WorkflowClient.newInstance(serviceStub);
+        WorkflowClient client =
+                WorkflowClient.newInstance(
+                        WorkflowServiceStubs.newServiceStubs(serviceStubsOptions), clientOptions);
 
         // Workflow options configure Workflow stubs.
         // A WorkflowId prevents duplicate instances, which are removed.

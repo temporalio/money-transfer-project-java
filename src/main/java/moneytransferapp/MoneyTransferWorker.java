@@ -2,18 +2,32 @@
 package moneytransferapp;
 
 import io.temporal.client.WorkflowClient;
+import io.temporal.client.WorkflowClientOptions;
+import io.temporal.envconfig.ClientConfigProfile;
+import io.temporal.envconfig.LoadClientConfigProfileOptions;
 import io.temporal.serviceclient.WorkflowServiceStubs;
+import io.temporal.serviceclient.WorkflowServiceStubsOptions;
 import io.temporal.worker.Worker;
 import io.temporal.worker.WorkerFactory;
 
+import java.io.IOException;
+
 public class MoneyTransferWorker {
 
-    public static void main(String[] args) {
-        // Create a stub that accesses a Temporal Service on the local development machine
-        WorkflowServiceStubs serviceStub = WorkflowServiceStubs.newLocalServiceStubs();
-
+    public static void main(String[] args) throws IOException {
         // The Worker uses the Client to communicate with the Temporal Service
-        WorkflowClient client = WorkflowClient.newInstance(serviceStub);
+        // This code will configure a Client based on details specified in the
+        // profile specified by the TEMPORAL_PROFILEenvironment variable. If
+        // unset, it will use the default settings.
+        ClientConfigProfile profile =
+                ClientConfigProfile.load(LoadClientConfigProfileOptions.newBuilder().build());
+
+        WorkflowServiceStubsOptions serviceStubsOptions = profile.toWorkflowServiceStubsOptions();
+        WorkflowClientOptions clientOptions = profile.toWorkflowClientOptions();
+
+        WorkflowClient client =
+                WorkflowClient.newInstance(
+                        WorkflowServiceStubs.newServiceStubs(serviceStubsOptions), clientOptions);
 
         // A WorkerFactory creates Workers
         WorkerFactory factory = WorkerFactory.newInstance(client);
