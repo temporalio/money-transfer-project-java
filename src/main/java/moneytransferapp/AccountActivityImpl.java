@@ -8,7 +8,6 @@ public class AccountActivityImpl implements AccountActivity {
     @Override
     public void withdraw(String accountId, String referenceId, int amount) {
         System.out.printf("\nWithdrawing $%d from account %s.\n[ReferenceId: %s]\n", amount, accountId, referenceId);
-        System.out.flush();
     }
 
     // Mock up the deposit of an amount of money from the destination account
@@ -18,7 +17,6 @@ public class AccountActivityImpl implements AccountActivity {
 
         if (!activityShouldSucceed) {
             System.out.println("Deposit failed");
-            System.out.flush();
             throw Activity.wrap(new RuntimeException("Simulated Activity error during deposit of funds"));
         }
 
@@ -33,12 +31,10 @@ public class AccountActivityImpl implements AccountActivity {
 
         if (!activityShouldSucceed) {
             System.out.println("Refund failed");
-            System.out.flush();
             throw Activity.wrap(new RuntimeException("Simulated Activity error during refund to source account"));
         }
 
         System.out.printf("\nRefunding $%d to account %s.\n[ReferenceId: %s]\n", amount, accountId, referenceId);
-        System.out.flush();
    }
 }
 // @@@SNIPEND
