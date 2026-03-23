@@ -6,30 +6,23 @@ import io.temporal.client.WorkflowClient;
 import io.temporal.client.WorkflowOptions;
 import io.temporal.serviceclient.WorkflowServiceStubs;
 
-import java.security.SecureRandom;
-import java.time.Instant;
 import java.util.UUID;
 import java.util.Random;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
-import java.util.concurrent.ThreadLocalRandom;
 
 public class TransferApp {
-    private static final SecureRandom random;
-
-    static {
-        // Seed the random number generator with nano date
-        random = new SecureRandom();
-        random.setSeed(Instant.now().getNano());
-    }
+    private static final Random random = new Random();
 
     public static String randomAccountIdentifier() {
-        return IntStream.range(0, 9)
-                .mapToObj(i -> String.valueOf(random.nextInt(10)))
-                .collect(Collectors.joining());
+        String allowedChars = "ABCDEFGHJKMNPQRTUVWXY346789";
+        StringBuilder accountId = new StringBuilder(10);
+        for (int i = 0; i < 10; i++) {
+            int index = random.nextInt(allowedChars.length());
+            accountId.append(allowedChars.charAt(index));
+        }
+        return accountId.toString();
     }
 
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) {
 
         // In the Java SDK, a stub represents an element that participates in
         // Temporal orchestration and communicates using gRPC.
@@ -56,14 +49,14 @@ public class TransferApp {
         String referenceId = UUID.randomUUID().toString().substring(0, 18);
         String fromAccount = randomAccountIdentifier();
         String toAccount = randomAccountIdentifier();
-        int amountToTransfer = ThreadLocalRandom.current().nextInt(15, 75);
+        int amountToTransfer = random.nextInt(15, 75);
         TransactionDetails transaction = new CoreTransactionDetails(fromAccount, toAccount, referenceId, amountToTransfer);
 
         // Perform asynchronous execution.
         // This process exits after making this call and printing details.
         WorkflowExecution we = WorkflowClient.start(workflow::transfer, transaction);
 
-        System.out.printf("\nMONEY TRANSFER PROJECT\n\n");
+        System.out.println("MONEY TRANSFER PROJECT\n");
         System.out.printf("Initiating transfer of $%d from [Account %s] to [Account %s].\n\n",
                           amountToTransfer, fromAccount, toAccount);
         System.out.printf("[WorkflowID: %s]\n[RunID: %s]\n[Transaction Reference: %s]\n\n", we.getWorkflowId(), we.getRunId(), referenceId);
