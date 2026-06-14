@@ -2,18 +2,29 @@
 package moneytransferapp;
 
 import io.temporal.client.WorkflowClient;
+import io.temporal.client.WorkflowClientOptions;
 import io.temporal.serviceclient.WorkflowServiceStubs;
+import io.temporal.serviceclient.WorkflowServiceStubsOptions;
 import io.temporal.worker.Worker;
 import io.temporal.worker.WorkerFactory;
 
 public class MoneyTransferWorker {
 
     public static void main(String[] args) {
-        // Create a stub that accesses a Temporal Service on the local development machine
-        WorkflowServiceStubs serviceStub = WorkflowServiceStubs.newLocalServiceStubs();
+        // Connect to Temporal Cloud using the gRPC endpoint and API key supplied
+        // via environment variables, with TLS enabled.
+        WorkflowServiceStubs serviceStub = WorkflowServiceStubs.newServiceStubs(
+                WorkflowServiceStubsOptions.newBuilder()
+                        .setTarget(System.getenv("TEMPORAL_ADDRESS"))
+                        .addApiKey(() -> System.getenv("TEMPORAL_API_KEY"))
+                        .setEnableHttps(true)
+                        .build());
 
         // The Worker uses the Client to communicate with the Temporal Service
-        WorkflowClient client = WorkflowClient.newInstance(serviceStub);
+        WorkflowClient client = WorkflowClient.newInstance(serviceStub,
+                WorkflowClientOptions.newBuilder()
+                        .setNamespace(System.getenv("TEMPORAL_NAMESPACE"))
+                        .build());
 
         // A WorkerFactory creates Workers
         WorkerFactory factory = WorkerFactory.newInstance(client);

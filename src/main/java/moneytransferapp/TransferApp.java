@@ -3,8 +3,10 @@ package moneytransferapp;
 
 import io.temporal.api.common.v1.WorkflowExecution;
 import io.temporal.client.WorkflowClient;
+import io.temporal.client.WorkflowClientOptions;
 import io.temporal.client.WorkflowOptions;
 import io.temporal.serviceclient.WorkflowServiceStubs;
+import io.temporal.serviceclient.WorkflowServiceStubsOptions;
 
 import java.security.SecureRandom;
 import java.time.Instant;
@@ -35,11 +37,21 @@ public class TransferApp {
         // Temporal orchestration and communicates using gRPC.
 
         // A WorkflowServiceStubs communicates with the Temporal front-end service.
-        WorkflowServiceStubs serviceStub = WorkflowServiceStubs.newLocalServiceStubs();
+        // Connect to Temporal Cloud using the gRPC endpoint and API key supplied
+        // via environment variables, with TLS enabled.
+        WorkflowServiceStubs serviceStub = WorkflowServiceStubs.newServiceStubs(
+                WorkflowServiceStubsOptions.newBuilder()
+                        .setTarget(System.getenv("TEMPORAL_ADDRESS"))
+                        .addApiKey(() -> System.getenv("TEMPORAL_API_KEY"))
+                        .setEnableHttps(true)
+                        .build());
 
         // A WorkflowClient wraps the stub.
         // It can be used to start, signal, query, cancel, and terminate Workflows.
-        WorkflowClient client = WorkflowClient.newInstance(serviceStub);
+        WorkflowClient client = WorkflowClient.newInstance(serviceStub,
+                WorkflowClientOptions.newBuilder()
+                        .setNamespace(System.getenv("TEMPORAL_NAMESPACE"))
+                        .build());
 
         // Workflow options configure Workflow stubs.
         // A WorkflowId prevents duplicate instances, which are removed.
