@@ -2,29 +2,29 @@
 package moneytransferapp;
 
 import io.temporal.client.WorkflowClient;
-import io.temporal.client.WorkflowClientOptions;
+import io.temporal.envconfig.ClientConfigProfile;
+import io.temporal.envconfig.LoadClientConfigProfileOptions;
 import io.temporal.serviceclient.WorkflowServiceStubs;
-import io.temporal.serviceclient.WorkflowServiceStubsOptions;
 import io.temporal.worker.Worker;
 import io.temporal.worker.WorkerFactory;
 
 public class MoneyTransferWorker {
 
-    public static void main(String[] args) {
-        // Connect to Temporal Cloud using the gRPC endpoint and API key supplied
-        // via environment variables, with TLS enabled.
-        WorkflowServiceStubs serviceStub = WorkflowServiceStubs.newServiceStubs(
-                WorkflowServiceStubsOptions.newBuilder()
-                        .setTarget(System.getenv("TEMPORAL_ADDRESS"))
-                        .addApiKey(() -> System.getenv("TEMPORAL_API_KEY"))
-                        .setEnableHttps(true)
+    public static void main(String[] args) throws Exception {
+        // Connect to Temporal Cloud by loading the "cloud-setup" profile from the
+        // shared Temporal client config (temporal.toml), which supplies the Cloud
+        // address, namespace, TLS settings, and API key.
+        ClientConfigProfile profile = ClientConfigProfile.load(
+                LoadClientConfigProfileOptions.newBuilder()
+                        .setConfigFileProfile("cloud-setup")
                         .build());
 
+        WorkflowServiceStubs serviceStub =
+                WorkflowServiceStubs.newServiceStubs(profile.toWorkflowServiceStubsOptions());
+
         // The Worker uses the Client to communicate with the Temporal Service
-        WorkflowClient client = WorkflowClient.newInstance(serviceStub,
-                WorkflowClientOptions.newBuilder()
-                        .setNamespace(System.getenv("TEMPORAL_NAMESPACE"))
-                        .build());
+        WorkflowClient client =
+                WorkflowClient.newInstance(serviceStub, profile.toWorkflowClientOptions());
 
         // A WorkerFactory creates Workers
         WorkerFactory factory = WorkerFactory.newInstance(client);
