@@ -57,7 +57,7 @@ public class TransferApp {
         // A WorkflowId prevents duplicate instances, which are removed.
         WorkflowOptions options = WorkflowOptions.newBuilder()
                 .setTaskQueue(Shared.MONEY_TRANSFER_TASK_QUEUE)
-                .setWorkflowId("money-transfer-workflow")
+                .setWorkflowId(System.getenv().getOrDefault("WORKFLOW_ID", "money-transfer-demo"))
                 .build();
 
         // WorkflowStubs enable calls to methods as if the Workflow object is local
