@@ -29,7 +29,16 @@
     <dependency>
       <groupId>io.temporal</groupId>
       <artifactId>temporal-sdk</artifactId>
-      <version>1.31.0</version>
+      <version>1.33.0</version>
+    </dependency>
+
+    <!--
+      Temporal client configuration loaded from environment variables or profiles.
+    -->
+    <dependency>
+      <groupId>io.temporal</groupId>
+      <artifactId>temporal-envconfig</artifactId>
+      <version>1.33.0</version>
     </dependency>
 
     <!--
@@ -38,7 +47,7 @@
     <dependency>
       <groupId>io.temporal</groupId>
       <artifactId>temporal-testing</artifactId>
-      <version>1.31.0</version>
+      <version>1.33.0</version>
       <scope>test</scope>
     </dependency>
 

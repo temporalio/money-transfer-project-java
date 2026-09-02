@@ -46,6 +46,15 @@ The Workflow Execution should quickly complete. You can view its
 status and details with the Temporal Web UI, which you can access
 at <http://localhost:8080>.
 
+## Configure a Temporal Client
+
+The worker and starter automatically load Temporal client configuration from
+the standard environment variables and Temporal CLI profile configuration. With
+no configuration, they connect to `127.0.0.1:7233` in the `default` namespace.
+Set values such as `TEMPORAL_ADDRESS` and `TEMPORAL_NAMESPACE`, or select a
+configured profile with `TEMPORAL_PROFILE`, to connect to another Temporal
+Service.
+
 
 ## Optional: Using the Makefile 
 
