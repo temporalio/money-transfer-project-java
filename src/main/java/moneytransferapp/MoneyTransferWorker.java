@@ -2,18 +2,15 @@
 package moneytransferapp;
 
 import io.temporal.client.WorkflowClient;
-import io.temporal.serviceclient.WorkflowServiceStubs;
 import io.temporal.worker.Worker;
 import io.temporal.worker.WorkerFactory;
+import java.io.IOException;
 
 public class MoneyTransferWorker {
 
-    public static void main(String[] args) {
-        // Create a stub that accesses a Temporal Service on the local development machine
-        WorkflowServiceStubs serviceStub = WorkflowServiceStubs.newLocalServiceStubs();
-
+    public static void main(String[] args) throws IOException {
         // The Worker uses the Client to communicate with the Temporal Service
-        WorkflowClient client = WorkflowClient.newInstance(serviceStub);
+        WorkflowClient client = ClientConfigProvider.newClient();
 
         // A WorkerFactory creates Workers
         WorkerFactory factory = WorkerFactory.newInstance(client);
