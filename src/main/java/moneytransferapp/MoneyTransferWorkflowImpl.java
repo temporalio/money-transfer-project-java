@@ -21,8 +21,7 @@ public class MoneyTransferWorkflowImpl implements MoneyTransferWorkflow {
     // being interrupted by the Orchestration service
     private final ActivityOptions defaultActivityOptions = ActivityOptions.newBuilder()
         .setRetryOptions(retryoptions) // Apply the RetryOptions defined above
-        .setStartToCloseTimeout(Duration.ofSeconds(2)) // Max execution time for single Activity
-        .setScheduleToCloseTimeout(Duration.ofSeconds(5000)) // Entire duration from scheduling to completion including queue time
+        .setStartToCloseTimeout(Duration.ofSeconds(5000)) // Max duration from activity start to completion
         .build();
 
     // ActivityStubs enable calls to methods as if the Activity object is local but actually perform an RPC invocation
